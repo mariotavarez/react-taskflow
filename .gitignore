@@ -1,0 +1,11 @@
+node_modules/
+dist/
+dist-ssr/
+*.local
+.env
+.env.local
+.env.production
+frame*.png
+demo.gif
+screenshot.png
+.DS_Store
