@@ -1,34 +1,47 @@
-# React TaskFlow
+<div align="center">
 
-A Kanban-style task management app built with React 19 and TypeScript 5.7. Manage tasks across workflow stages, filter by priority, create tasks with a sleek modal — powered by Tailwind CSS v4.
+# TaskFlow
+
+**Kanban that gets out of your way.**
+
+A fast, clean task board for managing work across stages — drag, filter, and ship. Built with React 19, TypeScript 5.7, and Tailwind CSS v4.
 
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4.1-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![Vite](https://img.shields.io/badge/Vite-6.2-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
 
-## Preview
-
 ![ Demo](.github/demo.gif)
+
+</div>
+
+---
+
+## What is TaskFlow?
+
+A Kanban board that focuses on what matters: moving tasks forward. Four columns, instant filtering, a clean modal for creating tasks — nothing bloated, nothing in the way.
+
+Built to demonstrate a production-grade React 19 codebase using **Atomic Design** from atoms to pages, with full TypeScript strictness throughout.
+
+```bash
+git clone https://github.com/mariotavarez/react-taskflow.git
+cd react-taskflow && npm install && npm run dev
+```
+
+---
 
 ## Features
 
-- **Kanban Board** — To Do → In Progress → Review → Done
-- **Priority System** — Urgent, High, Medium, Low badges with color coding
-- **Tags** — Colorful tag pills per card, with autocomplete input
-- **Task Modal** — Full form with title, description, priority, status, assignee, due date, and tags
-- **Search** — Instant full-text search across titles and tags
-- **Priority Filter** — Filter all columns simultaneously by priority level
+- **4-Column Kanban** — To Do → In Progress → Review → Done, with per-column task counts
+- **Priority System** — Urgent / High / Medium / Low badges with distinct color coding
+- **Full-Text Search** — Instantly filters across all columns by title or tag
+- **Priority Filter** — One click to isolate all Urgent (or any priority) tasks board-wide
+- **Task Modal** — Title, description, priority, status, assignee, due date, and tags in one form
+- **Tag Autocomplete** — Type-ahead tag input with colorful pill display
+- **Delete Tasks** — Hover a card to reveal the delete button, no confirmation dialogs
+- **Persistent State** — Tasks survive navigation (in-memory store, easily swappable for an API)
 
-## Tech Stack
-
-| Technology | Version | Purpose |
-|---|---|---|
-| React | 19 | UI framework |
-| TypeScript | 5.7 | Type safety |
-| Tailwind CSS | v4 | Vite plugin — zero config |
-| Lucide React | 0.344 | Icons |
-| Vite | 6.2 | Build tool |
+---
 
 ## Quick Start
 
@@ -39,51 +52,53 @@ npm install
 npm run dev
 ```
 
+Open [http://localhost:5173](http://localhost:5173)
+
+---
+
 ## Structure — Atomic Design
 
 ```
 src/
 ├── atoms/
-│   ├── Button.tsx          # Primary / ghost / danger / outline variants
-│   ├── Input.tsx           # Text input with label and error state
-│   ├── PriorityBadge.tsx   # Color-coded priority pill
-│   ├── Select.tsx          # Dropdown with label
-│   ├── TagPill.tsx         # Tag with optional remove button
-│   └── Textarea.tsx        # Multi-line input with label
+│   ├── Button.tsx          # primary / ghost / danger / outline variants
+│   ├── Input.tsx           # text input with label and error state
+│   ├── PriorityBadge.tsx   # color-coded priority pill
+│   ├── Select.tsx          # dropdown with label and options
+│   ├── TagPill.tsx         # tag with optional remove button
+│   └── Textarea.tsx        # multi-line input with label
 ├── molecules/
-│   ├── FilterChip.tsx      # Active/inactive filter button with count
-│   ├── FormField.tsx       # Tag input with pill management
-│   └── TaskCard.tsx        # Full task card (PriorityBadge + TagPills)
+│   ├── FilterChip.tsx      # active/inactive filter button with count badge
+│   ├── FormField.tsx       # tag input with pill management (Enter/comma to add)
+│   └── TaskCard.tsx        # full task card (PriorityBadge + TagPills + hover delete)
 ├── organisms/
-│   ├── BoardHeader.tsx     # Title bar with Add Task button
-│   ├── FilterBar.tsx       # Search input + priority FilterChips
-│   ├── KanbanColumn.tsx    # Labeled column with TaskCard list
-│   └── TaskModal.tsx       # Full create/view task form modal
+│   ├── BoardHeader.tsx     # title bar with task count and Add Task button
+│   ├── FilterBar.tsx       # search input + priority FilterChips
+│   ├── KanbanColumn.tsx    # labeled column with status color + TaskCard list
+│   └── TaskModal.tsx       # full create/view task form with backdrop blur
 ├── templates/
-│   └── BoardLayout.tsx     # BoardHeader + main content area
+│   └── BoardLayout.tsx     # BoardHeader + scrollable main content area
 ├── pages/
-│   └── BoardPage.tsx       # Full page — state, filtering, modal logic
-├── store/taskStore.ts      # useState-based task store with CRUD
-├── types/index.ts
-├── App.tsx
-└── main.tsx
+│   └── BoardPage.tsx       # all state: tasks, filters, modal, selection
+├── store/taskStore.ts      # useState-based CRUD store with 8 seed tasks
+└── types/index.ts          # Task, Status, Priority types
 ```
 
-## Tailwind CSS v4
+---
 
-No config file needed:
+## Tech Stack
 
-```ts
-// vite.config.ts
-import tailwindcss from '@tailwindcss/vite'
-export default defineConfig({ plugins: [react(), tailwindcss()] })
-```
+| Technology | Version | Purpose |
+|---|---|---|
+| React | 19 | UI framework |
+| TypeScript | 5.7 | Strict type safety |
+| Tailwind CSS | v4 | Vite plugin — zero config |
+| Lucide React | 0.344 | Icons |
+| clsx | 2.1 | Conditional class merging |
+| Vite | 6.2 | Build tool |
 
-```css
-/* src/index.css */
-@import "tailwindcss";
-```
+---
 
 ## License
 
-MIT © Mario Tavarez
+MIT © [Mario Tavarez](https://github.com/mariotavarez)
